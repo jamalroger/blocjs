@@ -100,24 +100,59 @@ css(value){
 
     this.id.setAttribute("style",value);
 }
-rep(child,rep){
+rep(child,reps){
  
-    var k=document.getElementById(child);
-    var w=document.getElementById(rep);
+   var k=document.getElementById(child);
+   var w=document.getElementById(reps);
     this.id.replaceChild(w,k);
 
 }
+getChildValue(p){
 
-swap(p,s){
+   return this.id.childNodes[p].nodeValue;
+}
+setChildValue(p,v){
 
-  var k=document.getElementById(p);
+this.id.childNodes[p].innerHTML=v;
+
+ }
+
+swap(a,s){
+
+  var k=document.getElementById(a);
   var w=document.getElementById(s);
 
-  var p=createElement("p");
+  var p=document.createElement("p");
 
   p.innerHTML=k.innerHTML;
   k.innerHTML=w.innerHTML;
   w.innerHTML=p.innerHTML;
 }
+getAttr(name){
+
+this.id.getAttribute(name);
+}
+setAttr(name,value){
+
+this.id.setAttribute(name,value);
+
+}
+moveBottom(name){
+
+    var p= document.createElement("p");
+    var child = document.getElementById(name);
+    p.innerHTML=child.innerHTML;
+    this.id.removeChild(child);
+    this.id.appendChild(p);
+}
+moveTop(name){
+
+    var p= document.createElement("p");
+    var child = document.getElementById(name);
+    p.innerHTML=child.innerHTML;
+    this.id.removeChild(child);
+    this.id.insertBefore(p,this.id.firstChild);
+}
+
 
 }

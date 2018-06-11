@@ -6,19 +6,17 @@
 <body>
   
 <div id="bloc">
-<p id="b">jamal belheraddi</p>
-<p id="a">hicham belheraddi</p>
+<p id="a">jamal belheraddi</p>
+<p id="b">hicham belheraddi</p>
 
 </div>
 <div id="cc">
     
  <script>
    var bloc= new blocjs("bloc"); 
-   bloc.event("click",function(event){
 
-     bloc.css("background:red;border:1px solid 1px;");
+    bloc.moveTop('b');
 
-   });
  </script>
     <input onclick="bloc.show()" type="submit" value="click"/>
     </div>
