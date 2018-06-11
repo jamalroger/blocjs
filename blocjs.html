@@ -4,20 +4,24 @@
 <script src="./blocjs.js"></script>
 </head>
 <body>
-    <script>
-        var bloc= new blocjs(bloc); 
- </script>
+  
 <div id="bloc">
-<p>jamal belheraddi</p>
+<p id="b">jamal belheraddi</p>
+<p id="a">hicham belheraddi</p>
 
 </div>
 <div id="cc">
-    <input onclick=bloc.hide()"" type="submit" value="click"/>
+    
+ <script>
+   var bloc= new blocjs("bloc"); 
+   bloc.event("click",function(event){
+
+     bloc.css("background:red;border:1px solid 1px;");
+
+   });
+ </script>
+    <input onclick="bloc.show()" type="submit" value="click"/>
     </div>
-
-
-
-
 
 </body>
 
