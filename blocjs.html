@@ -2,28 +2,48 @@
 <head>
 <title>bloc js</title>
 <script src="./blocjs.js"></script>
+<style>
+.fi {
+background:red;
+}
+
+body {
+
+  height: 7000px;
+}
+
+
+</style>
 </head>
 <body>
   
-<div id="bloc">
-   <p>list1</p>
-   <p>list2</p>
-   <p>list3</p>
-   <p>list4</p>
-   <p>list5</p>
-   <p>list6</p>
 
-</div>
+<input type="text" id="msg" name="msg"/>
 <div id="cc">
-    
+fffffffffffffffffffff
+  </div>  
  <script>
-   var bloc= new blocjs("bloc"); 
+   var bloc= new blocjs("#cc"); 
+   var msg= new blocjs("#msg");
+   var s=document.querySelector("#cc");
+   document.write("position of bloc is"+bloc.getPosition().y);
+     bloc.addToTop();
+    window.addEventListener("scroll",function(){
+    if (window.scrollY >bloc.getPosition().y){
+      s.style.position='fixed';
+      s.style.top='0px';
 
-    bloc.moveTop('b');
+    }else
+    {
+       s.style.position='';
+        s.style.top='';
+    }
+
+  });
 
  </script>
     <input onclick="bloc.show()" type="submit" value="click"/>
-    </div>
+  
 
 </body>
 

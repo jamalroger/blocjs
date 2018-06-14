@@ -5,15 +5,14 @@
 class blocjs {
     constructor(elem){
 
-       this.id=document.getElementById(elem);
+       this.id=document.querySelector(elem);
     }
 
 
 append(ele,content){
 
     var para = document.createElement(ele);
-    var node = document.createTextNode(content);
-    para.appendChild(node);
+    para.innerHTML=content;
     this.id.appendChild(para);
 
 }
@@ -31,8 +30,7 @@ value(){
 prepend(ele,content){
 
     var para = document.createElement(ele);
-    var node = document.createTextNode(content);
-    para.appendChild(node);
+      para.innerHTML=content;
     this.id.insertBefore(para,this.id.firstChild);
 }
 
@@ -55,15 +53,17 @@ setValue(value){
      }
 
 addClass(name){
-       var p= this.id.getAttribute("class")==null?"":this.id.getAttribute("class");
-       this.id.setAttribute("class",p + " " + name);
+    //    var p= this.id.getAttribute("class")==null?"":this.id.getAttribute("class");
+    //    this.id.setAttribute("class",p + " " + name);
+    this.id.classList.add(name);
 
    }  
 delClass(name){
 
-       var p= this.id.getAttribute("class").split(" ");
-       p.splice(p.indexOf(name),1);
-       this.id.setAttribute("class",p);
+    //    var p= this.id.getAttribute("class").split(" ");
+    //    p.splice(p.indexOf(name),1);
+    //    this.id.setAttribute("class",p);
+    this.id.classList.remove(name);
    }
 toUpper(){
 
@@ -85,7 +85,7 @@ find(elem){
 
 
    }
-event(event,func){
+on(event,func){
 
 this.id.addEventListener(event,func);
 
@@ -153,6 +153,53 @@ moveTop(name){
     this.id.removeChild(child);
     this.id.insertBefore(p,this.id.firstChild);
 }
+
+getInput(name){
+
+this.id.innerHTML=document.querySelector(name).value;
+}
+// Helper function to get an element's exact positio
+
+getPosition() {
+    var xPosition = 0;
+    var yPosition = 0;
+    var el = this.id;
+    while (el) {
+      if (el.tagName == "BODY") {
+        // deal with browser quirks with body/window/document and page scroll
+        var xScrollPos = el.scrollLeft || document.documentElement.scrollLeft;
+        var yScrollPos = el.scrollTop || document.documentElement.scrollTop;
+  
+        xPosition += (el.offsetLeft - xScrollPos + el.clientLeft);
+        yPosition += (el.offsetTop - yScrollPos + el.clientTop);
+      } else {
+        xPosition += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+        yPosition += (el.offsetTop - el.scrollTop + el.clientTop);
+      }
+  
+      el = el.offsetParent;
+    }
+    return {
+      x: xPosition,
+      y: yPosition
+    };
+  }
+
+onscrollAdd(name){
+
+  window.addEventListener("scroll",function(){
+    if (window.scrollY>getPosition().y){
+      this.id.classList.add(name);
+
+    }else
+    {
+        this.id.classList.remove(name);
+    }
+
+  });
+
+
+  }
 
 
 }
